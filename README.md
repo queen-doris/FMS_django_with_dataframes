@@ -32,9 +32,55 @@ This is a Fleet Management System built using Django and PostgreSQL. The system 
 - Django 3.0 or above
 - PostgreSQL
 
-### Steps
+## Setup
 
-1. **Clone the repository**:
-   ```bash
-   git clone <repository_url>
-   cd <project_directory>
+### 1. Clone the Repository
+```bash
+
+git clone https://github.com/queen-doris/Fleet_management_system_fastAPI.git
+
+```
+
+
+### 2. Create a virtual environment
+```bash
+
+python -m venv [env-name]
+
+```
+
+Activate the virtual environment:
+
+```bash
+.venv\Scripts\activate
+
+```
+
+### 3. Install Dependencies
+Install the required Python libraries from the `requirements.txt` file:
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Set up your database:
+
+Create a PostgreSQL database and configure the DATABASES setting in settings.py of the project.
+
+Run migrations:
+```bash
+python showmigrations
+python makemigrations
+python manage.py migrate
+```
+
+### 6. Start the Application
+
+```bash
+python manage.py runserver```
+
+The application will be available at `http://127.0.0.1:8000`.
+
+```
+
+## Author
+Developed by Queen.
