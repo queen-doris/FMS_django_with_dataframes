@@ -37,7 +37,9 @@ This is a Fleet Management System built using Django and PostgreSQL. The system 
 ### 1. Clone the Repository
 ```bash
 
-git clone https://github.com/queen-doris/Fleet_management_system_DJANGO_with_dataframes.git
+
+git clone https://github.com/queen-doris/FMS_django_with_dataframes.git
+
 
 ```
 
