@@ -4,7 +4,7 @@ from .forms import MaintenanceForm
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
+# @login_required
 def maintenance_list(request):
     maintenances = Maintenance.objects.all()
     return render(request, 'maintenance/maintenance_list.html', {'maintenances': maintenances})

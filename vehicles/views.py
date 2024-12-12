@@ -5,28 +5,26 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 
-@login_required
+# @login_required
 def home(request):
     vehicles = Vehicle.objects.all()  # Fetch all vehicles from the database
     return render(request, 'base.html', {'vehicles': vehicles})
 
 # @login_required
 def vehicle_list(request):
-    # vehicles = Vehicle.objects.all().order_by('id')
+    vehicles = Vehicle.objects.all().order_by('id')
 
-    # paginator = Paginator(vehicles, 15)
+    paginator = Paginator(vehicles, 15)
 
-    # page_number = request.GET.get('page', 1)
+    page_number = request.GET.get('page', 1)
 
-    # vehicles_page = paginator.get_page(page_number)
+    vehicles_page = paginator.get_page(page_number)
 
-    vehicle_data = Vehicle.objects.all().values('id','name','license_plate','vehicle_type','created_at')
-    
+# Return the data as JSON
+    return JsonResponse({'vehicles': list(vehicles_page.object_list.values('id','name', 'license_plate', 'vehicle_type', 'created_at')), 'page': page_number, 'total_pages': paginator.num_pages})
 
-    # Return the data as JSON
-    return JsonResponse({'vehicles': list(vehicle_data)})
 
-    # return render(request, 'vehicles/vehicle_list.html', {"vehicles": vehicles_page})
+# return render(request, 'vehicles/vehicle_list.html', {"vehicles": vehicles_page})
 
 @login_required
 def create_vehicle(request):

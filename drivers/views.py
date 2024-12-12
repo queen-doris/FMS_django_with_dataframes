@@ -4,25 +4,20 @@ from .models import Driver
 from .forms import DriverForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+
 # @login_required
 def driver_list(request):
-    # drivers = Driver.objects.all().order_by('id')
-    # paginator = Paginator(drivers, 15)
+    drivers = Driver.objects.all().order_by('id')
+    paginator = Paginator(drivers, 15)
 
-    # page_number = request.GET.get('page', 1)
+    page_number = request.GET.get('page', 1)
 
-    # drivers_page = paginator.get_page(page_number)
+    drivers_page = paginator.get_page(page_number)
 
-    # drivers_data = list(drivers_page.object_list.values('id','name', 'license_number', 'hired_at', 'updated_at', 'assigned_vehicle'))
-
-    driver_data = Driver.objects.all().values('id','name','license_number','hired_at','updated_at', 'assigned_vehicle')
-    
+    drivers_data = list(drivers_page.object_list.values('id','name', 'license_number', 'hired_at', 'updated_at', 'assigned_vehicle'))
 
     # Return the data as JSON
-    return JsonResponse({'drivers': list(driver_data)})
-    
-    # Return the data as JSON
-    # return JsonResponse({'drivers': drivers_data, 'page': page_number, 'total_pages': paginator.num_pages})
+    return JsonResponse({'drivers': drivers_data, 'page': page_number, 'total_pages': paginator.num_pages})
 
     # return render(request, 'drivers/driver_list.html', {'drivers': drivers_page})
 
