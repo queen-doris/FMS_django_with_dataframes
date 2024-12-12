@@ -23,6 +23,7 @@ def vehicle_list(request):
 # Return the data as JSON
     return JsonResponse({'vehicles': list(vehicles_page.object_list.values('id','name', 'license_plate', 'vehicle_type', 'created_at')), 'page': page_number, 'total_pages': paginator.num_pages})
 
+# Return data with an HTML template
 
 # return render(request, 'vehicles/vehicle_list.html', {"vehicles": vehicles_page})
 

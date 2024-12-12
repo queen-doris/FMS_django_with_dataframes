@@ -19,6 +19,8 @@ def driver_list(request):
     # Return the data as JSON
     return JsonResponse({'drivers': drivers_data, 'page': page_number, 'total_pages': paginator.num_pages})
 
+    # Return data as an HTML template
+
     # return render(request, 'drivers/driver_list.html', {'drivers': drivers_page})
 
 

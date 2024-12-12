@@ -82,5 +82,28 @@ The application will be available at `http://127.0.0.1:8000`.
 
 ```
 
+### 7. For Operations the dataframes  
+
+I have been able to fetch data, define my datasets, data cleaning, pre-processing and also feature engineering for my data
+
+```bash
+python manipulations.py
+
+```
+
+### 8. For normal operations and normal rendering of data with a normal UI
+
+You can reach out into the views.py files for both vehicles and drivers apps and uncomment the line 24 for drivers in views.py and line 28 for drivers in views.py and then comment those that have been outputting data as json.
+
+after that re-run the server again
+
+```bash
+
+python manage.py runserver
+
+```
+
+
+
 ## Author
 Developed by Queen.
