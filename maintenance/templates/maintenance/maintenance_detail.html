@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Maintenance Details for {{ maintenance.vehicle.name }}</h2>
+    <p><strong>Maintenance Date:</strong> {{ maintenance.scheduled_date }}</p>
+    <p><strong>Status (completed):</strong> {{ maintenance.completed }}</p>
+    <p><strong><Data></Data>Description:</strong> {{ maintenance.description }}</p>
+
+    <a href="{% url 'maintenance_update' maintenance.id %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'maintenance_delete' maintenance.id %}" class="btn btn-danger"
+  >Delete</a
+>
+<a href="{% url 'maintenance_list' %}" class="btn btn-secondary">Back to List</a>
+    
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Maintenances</h2><br>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Vehicle</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Completed</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for maintenance in maintenances %}
+            <tr>
+                <td>{{ maintenance.vehicle.name }}</td>
+                <td>{{ maintenance.scheduled_date }}</td>
+                <td>{{ maintenance.description }}</td>
+                <td>{{ maintenance.completed }}</td>
+            
+                <td>
+                    <a href="{% url 'maintenance_detail' maintenance.pk %}" class="btn btn-info">View</a>
+                    <a href="{% url 'maintenance_update' maintenance.pk %}" class="btn btn-warning">Edit</a>
+                    <form method="POST" action="{% url 'maintenance_delete' maintenance.pk %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+
+            {% empty %}
+            <tr>
+              <td colspan="5" class="text-center">No Maintenance info found.</td>
+            </tr>
+          {% endfor %}
+
+            
+        </tbody>
+    </table><br>
+    <a href="{% url 'maintenance_create' %}" class="btn btn-primary">Add New Maintenance</a>
+</div>
+{% endblock %}

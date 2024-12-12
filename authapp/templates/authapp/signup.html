@@ -1,0 +1,118 @@
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(to bottom right, #1B263B, #415A77);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: white;
+    }
+
+    form {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        width: 400px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    form:hover {
+        transform: scale(1.03);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #D9E2EC;
+    }
+
+    div {
+        margin-bottom: 15px;
+    }
+
+    input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #415A77;
+        border-radius: 8px;
+        font-size: 14px;
+        background-color: #1B263B;
+        color: white;
+        margin-top: 10px;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    input[type="text"]:focus, input[type="password"]:focus {
+        border-color: #00A4CC;
+        outline: none;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #00A4CC;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
+    }
+
+    button:hover {
+        background-color: #007EA7;
+        transform: scale(1.05);
+    }
+
+    .error {
+        background-color: #F8D7DA;
+        color: #721C24;
+        border: 1px solid #F5C6CB;
+        padding: 8px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+
+    p {
+        text-align: center;
+        margin-top: 15px;
+        color: #D9E2EC;
+    }
+
+    a {
+        color: #00A4CC;
+        text-decoration: none;
+        font-weight: bold;
+        transition: text-shadow 0.3s ease-in-out;
+    }
+
+    a:hover {
+        text-shadow: 0 0 8px #00A4CC;
+    }
+</style>
+
+<form method="post">
+    {% csrf_token %}
+    <h2>Sign Up</h2>
+
+    {% for field in form %}
+        <div>
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                <div class="error">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <button type="submit">Sign Up</button>
+
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</form>

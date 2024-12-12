@@ -1,0 +1,92 @@
+{% extends 'base.html' %} {% block title %}Driver List{% endblock %}
+{% block content %}
+<h1>Drivers</h1><br>
+<table class="table table-bordered table-striped">
+  <thead >
+    <tr>
+      <th>Name</th>
+      <th>License_number</th>
+      <th>Hired at</th>
+      <th>Updated at</th>
+      <th>Assigned vehicle</th>
+      <th style="width: 200px;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for driver in drivers %}
+    <tr>
+      
+      <td>
+        <a href="{% url 'driver_detail' driver.id %}">{{ driver.name }}</a>
+      </td>
+      <td>{{ driver.license_number }}</td>
+      <td>{{ driver.hired_at}}</td>
+      <td>{{ driver.updated_at}}</td>
+      <td>{{ driver.assigned_vehicle}}</td>
+      <td>
+        <a href="{% url 'driver_update' driver.id %}" class="btn btn-warning"
+          >Edit</a
+        >
+        <a href="{% url 'driver_delete' driver.id %}" class="btn btn-danger"
+          >Delete</a
+        >
+      </td>
+    </tr>
+    {% empty %}
+      <tr>
+        <td colspan="5" class="text-center">No Drivers found.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<!-- Enhanced Pagination Controls -->
+<nav aria-label="Page navigation" class="mt-4">
+  <ul class="pagination justify-content-center">
+    <!-- First and Previous -->
+    {% if drivers.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page=1" aria-label="First">First</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ drivers.previous_page_number }}" aria-label="Previous">Prev</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" aria-label="First">First</a>
+      </li>
+      <li class="page-item disabled">
+        <a class="page-link" href="#" aria-label="Previous">Prev</a>
+      </li>
+    {% endif %}
+
+
+    <!-- Next and Last -->
+    {% if drivers.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ drivers.next_page_number }}" aria-label="Next">Next</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ drivers.paginator.num_pages }}" aria-label="Last">Last</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" aria-label="Next">Next</a>
+      </li>
+      <li class="page-item disabled">
+        <a class="page-link" href="#" aria-label="Last">Last</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav><br>
+
+    <div class="text-center mt-2">
+  <small>
+    Page {{ drivers.number }} of {{ drivers.paginator.num_pages }}
+  </small>
+</div><br>
+
+<a href="{% url 'driver_create' %}" class="btn btn-primary">Add New Driver</a>
+{% endblock %}
+

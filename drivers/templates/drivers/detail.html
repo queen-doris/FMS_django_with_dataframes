@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block title %}Driver Detail{% endblock %} 
+{% block content %}
+<h1>{{ driver.name }}</h1>
+<p>License_number: {{ driver.license_number }}</p>
+<p>hired at: {{ driver.hired_at }}</p>
+<p>Updated at: {{ driver.updated_at }}</p>
+<p>Assigned vehicle: {{ driver.assigned_vehicle }}</p>
+<a href="{% url 'driver_update' driver.id %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'driver_delete' driver.id %}" class="btn btn-danger"
+  >Delete</a
+>
+<a href="{% url 'driver_list' %}" class="btn btn-secondary">Back to List</a>
+{% endblock %}
